@@ -1,0 +1,196 @@
+{
+ "schema_version": 1,
+ "frozen_at": "2026-09-27",
+ "xfail_count": 46,
+ "upstream_pin": {
+  "date": "2026-09-27",
+  "clone": "D:/OpenCode/temp/PA_Agent_github",
+  "note": "upstream CI red; test defects in-sync (SHA SAME) — last_green_upstream_sha unset until an upstream green run exists"
+ },
+ "xfails": {
+  "tests/e2e/test_smoke_happy_path.py::test_happy_path_shows_trading_decision": {
+   "reason": "upstream test defect: ctx.settings is None (bare AppContext, not bootstrap); fix in tests/e2e/_make_ctx to inject settings",
+   "scope": "always"
+  },
+  "tests/e2e/test_smoke_free_chat.py::test_free_chat_after_analysis": {
+   "reason": "upstream test defect: ctx.settings is None; fix in tests/e2e/_make_ctx",
+   "scope": "always"
+  },
+  "tests/e2e/test_smoke_no_order.py::test_no_order_shows_no_trade_conclusion": {
+   "reason": "upstream test defect: ctx.settings is None; fix in tests/e2e/_make_ctx",
+   "scope": "always"
+  },
+  "tests/e2e/test_smoke_switch_mid_flight.py::test_switch_mid_flight_cancels_worker": {
+   "reason": "upstream test defect: ctx.settings is None; fix in tests/e2e/_make_ctx",
+   "scope": "always"
+  },
+  "tests/integration/test_next_bar_prediction.py::test_orchestrator_passes_through_prediction": {
+   "reason": "upstream drift: orchestrator returns None prediction; fix in pa_agent/orchestrator",
+   "scope": "always"
+  },
+  "tests/integration/test_next_bar_prediction.py::test_save_full_round_trip": {
+   "reason": "upstream drift: save_full round trip yields None; fix in pa_agent/orchestrator",
+   "scope": "always"
+  },
+  "tests/integration/test_next_bar_prediction.py::test_demo_mode_replays_legacy_record": {
+   "reason": "upstream drift: demo record replay (local restore removed local skip)",
+   "scope": "always"
+  },
+  "tests/integration/test_two_stage_no_order_with_prices.py::test_no_order_with_non_null_price_fails_stage2": {
+   "reason": "upstream drift: Stage2Failed event not in [1,3,5,7,9]; fix in pa_agent/orchestrator/two_stage",
+   "scope": "always"
+  },
+  "tests/property/test_json_validator_categories.py::test_no_order_with_non_null_price_is_category_c": {
+   "reason": "upstream drift: category classification mismatch; fix in pa_agent/orchestrator/json_validator",
+   "scope": "always"
+  },
+  "tests/property/test_json_validator_categories.py::test_truncated_stage1_after_bar_by_bar_summary_fails_by_default": {
+   "reason": "upstream drift: truncation repair default behavior",
+   "scope": "always"
+  },
+  "tests/property/test_json_validator_categories.py::test_truncated_stage1_can_repair_when_lenient_config": {
+   "reason": "upstream drift: lenient repair behavior",
+   "scope": "always"
+  },
+  "tests/property/test_logs_have_no_plaintext_key.py::test_log_file_never_contains_plaintext_key": {
+   "reason": "upstream drift: log file content EMPTY (masked key count 0, snippet ''); fix in configure_logging",
+   "scope": "always"
+  },
+  "tests/property/test_next_bar_prediction.py::test_p2_direction_equals_argmax": {
+   "reason": "upstream drift: empty probabilities {} argmax yields bearish vs expected bullish; fix in p2 inference",
+   "scope": "always"
+  },
+  "tests/property/test_snapshot_bijection.py::test_live_frame_forming_bar_is_seq1": {
+   "reason": "upstream drift: seq1 bar marked closed=True (expected forming); fix in snapshot builder",
+   "scope": "always"
+  },
+  "tests/property/test_stage2_no_order_invariant.py::test_no_order_with_non_null_price_rejected": {
+   "reason": "upstream drift: entry_price=0 accepted; fix in pa_agent/orchestrator/two_stage",
+   "scope": "always"
+  },
+  "tests/property/test_stage2_no_order_invariant.py::test_breakout_order_requires_extreme_basis": {
+   "reason": "upstream drift: breakout basis check; fix in pa_agent/orchestrator/two_stage",
+   "scope": "always"
+  },
+  "tests/unit/test_coherence_checks.py::test_structural_inside_outside_mismatch_still_errors_in_strict": {
+   "reason": "upstream drift: coherence generator check fails strict; fix in pa_agent/orchestrator/coherence",
+   "scope": "always"
+  },
+  "tests/unit/test_decision_panel.py::test_panel_no_prediction_hidden": {
+   "reason": "upstream drift: DecisionPanel lacks _prediction_group (AttributeError); fix upstream",
+   "scope": "always"
+  },
+  "tests/unit/test_decision_panel.py::test_panel_unpredictable_renders_gray": {
+   "reason": "upstream drift: DecisionPanel lacks _prediction_group",
+   "scope": "always"
+  },
+  "tests/unit/test_decision_panel.py::test_panel_bullish_renders_green": {
+   "reason": "upstream drift: DecisionPanel lacks _prediction_group",
+   "scope": "always"
+  },
+  "tests/unit/test_decision_panel.py::test_panel_bearish_renders_red": {
+   "reason": "upstream drift: DecisionPanel lacks _prediction_group",
+   "scope": "always"
+  },
+  "tests/unit/test_decision_panel.py::test_panel_neutral_renders_yellow": {
+   "reason": "upstream drift: DecisionPanel lacks _prediction_group/_prediction_direction_label",
+   "scope": "always"
+  },
+  "tests/unit/test_decision_panel.py::test_panel_clear_hides_group": {
+   "reason": "upstream drift: DecisionPanel lacks _prediction_group",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_keeps_reasoning_when_toggled.py::TestFreeChatKeepsReasoningWhenToggled::test_followup_assistant_keeps_reasoning_in_api_when_toggled": {
+   "reason": "upstream drift: recall summary role assistant vs system; fix in pa_agent/orchestrator/free_chat.py",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_keeps_reasoning_when_toggled.py::TestFreeChatKeepsReasoningWhenToggled::test_previous_turns_keep_reasoning_in_api": {
+   "reason": "upstream drift: recall summary role",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_keeps_reasoning_when_toggled.py::TestFreeChatKeepsReasoningWhenToggled::test_three_turns_all_assistant_messages_have_reasoning_in_api": {
+   "reason": "upstream drift: recall summary role",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_keeps_reasoning_when_toggled.py::TestFreeChatKeepsReasoningWhenToggled::test_toggle_can_be_set_after_construction": {
+   "reason": "upstream drift: recall summary role",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_resend_drops_reasoning.py::TestFreeChatResendDropsReasoning::test_followup_history_has_no_reasoning_by_default": {
+   "reason": "upstream drift: recall summary role assistant vs system",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_resend_drops_reasoning.py::TestFreeChatResendDropsReasoning::test_history_for_api_structure_first_turn": {
+   "reason": "upstream drift: recall summary role",
+   "scope": "always"
+  },
+  "tests/unit/test_free_chat_resend_drops_reasoning.py::TestFreeChatResendDropsReasoning::test_history_for_api_grows_with_turns": {
+   "reason": "upstream drift: recall summary role",
+   "scope": "always"
+  },
+  "tests/unit/test_futu_source.py::test_futu_source_uses_returned_news_summary_without_opening_url": {
+   "reason": "upstream drift: futu max_count 10 vs test expects 100 (futu_source.py:288); fix upstream test or impl",
+   "scope": "always"
+  },
+  "tests/unit/test_main_window_layout.py::test_workbench_uses_45_55_split_and_right_docked_pipeline": {
+   "reason": "upstream drift: workspace NoneType parts (timeframe None); fix in second_order_workspace construction",
+   "scope": "always"
+  },
+  "tests/unit/test_main_window_layout.py::test_strategy_switch_replaces_the_top_action_controls_and_isolates_pipelines": {
+   "reason": "upstream drift: control_bar None; fix in second_order_workspace construction",
+   "scope": "always"
+  },
+  "tests/unit/test_main_window_layout.py::test_second_order_creates_a_fresh_pa_client_instead_of_using_context_client": {
+   "reason": "upstream drift: fresh pa client behavior",
+   "scope": "always"
+  },
+  "tests/unit/test_main_window_layout.py::test_t1_stage2_completion_auto_routes_the_current_decision": {
+   "reason": "upstream drift: set_pa_payload None; fix in orchestrator wiring",
+   "scope": "always"
+  },
+  "tests/unit/test_main_window_layout.py::test_t1_stage2_no_order_only_synchronizes_without_running": {
+   "reason": "upstream drift: set_pa_payload None",
+   "scope": "always"
+  },
+  "tests/unit/test_main_window_layout.py::test_t0_stage2_completion_only_synchronizes_without_running": {
+   "reason": "upstream drift: set_pa_payload None",
+   "scope": "always"
+  },
+  "tests/unit/test_order_method_router.py::test_model_breakout_preserved_for_broad_channel": {
+   "reason": "upstream drift: 限价单 vs 突破单; fix in router order method mapping",
+   "scope": "always"
+  },
+  "tests/unit/test_order_opportunity.py::test_play_order_alert_sound_uses_wav_on_windows": {
+   "reason": "upstream drift: MessageBeep vs notify.wav; fix in pa_agent/gui/order_opportunity sound",
+   "scope": "always"
+  },
+  "tests/unit/test_provider_override_by_model.py::test_openclaw_cs_overrides_user_url_and_key": {
+   "reason": "upstream drift: openclaw url override ''; fix in provider override logic",
+   "scope": "always"
+  },
+  "tests/unit/test_json_validator.py::test_stage2_raw_sample_repair_then_parse": {
+   "reason": "upstream defect: tools/stage2_raw_sample.txt missing (no CI generation step)",
+   "scope": "always"
+  },
+  "tests/unit/test_json_validator.py::test_strip_fences_includes_repair": {
+   "reason": "upstream defect: tools/stage2_raw_sample.txt missing",
+   "scope": "always"
+  },
+  "tests/unit/test_second_order_chart.py::test_kline_payload_fetches_once_and_returns_all_loaded_chart_points": {
+   "reason": "env: src.integration requires SecondOrderGame (second_order_workspace.py:1190); not installed",
+   "scope": "always"
+  },
+  "tests/unit/test_indicator_panel.py::test_moving_average_toolbar_drives_chart_overlay": {
+   "reason": "order-dependent: passes solo, fails in full suite (Qt offscreen state leak); full-run strict=True alerts when upstream fixes; fix = conftest per-file cleanup or upstream test isolation",
+   "scope": "full-only"
+  },
+  "tests/unit/test_second_order_cards.py::test_game_page_maps_contract_fields": {
+   "reason": "order-dependent: passes solo, fails in full suite; full-run strict=True alerts when upstream fixes; fix = upstream test isolation/reset",
+   "scope": "full-only"
+  },
+  "tests/unit/test_main_window_layout.py::test_opening_embedded_analysis_does_not_flash_child_windows": {
+   "reason": "order-dependent in-file: passes solo, fails in file/full; full+file strict=True, solo unregistered; fix = upstream test isolation (state leak inside test_main_window_layout)",
+   "scope": "full-file"
+  }
+ }
+}

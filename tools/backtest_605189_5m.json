@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "symbol": "605189",
+    "timeframe": "5m",
+    "bar_count": 40,
+    "stance": "balanced",
+    "timestamp": "2026-07-20T22:24:48.950097",
+    "skip_ai": true,
+    "price_range": "13.9700 - 15.0100",
+    "price_change_pct": "-1.99%"
+  },
+  "preflight_gate": {
+    "node": "1.1",
+    "label": "前置数据闸门",
+    "passed": true,
+    "reason": "",
+    "failed_check": null
+  },
+  "direction": {
+    "node": "2.3",
+    "label": "方向判定 (5信号投票系统)",
+    "direction": "neutral",
+    "answer": "中性",
+    "signals": [
+      {
+        "name": "S1 EMA斜率",
+        "value": -1,
+        "detail": "EMA从K11到K1: 14.4605→14.2454, 变化=-0.2152, ATR死区=±0.0074"
+      },
+      {
+        "name": "S2 收盘重心",
+        "value": 1,
+        "detail": "近半窗口加权均价=14.1442, 远半=14.0370, 重心差=0.1072, 死区±0.0148"
+      },
+      {
+        "name": "S3 波段结构",
+        "value": 0,
+        "detail": "枢轴点不足 (高点0个, 低点1个)"
+      },
+      {
+        "name": "S4 趋势棒优势",
+        "value": 1,
+        "detail": "多头趋势棒=4根, 空头趋势棒=2根, 优势阈值≥1.5x"
+      },
+      {
+        "name": "S5 K线重叠率",
+        "value": -1,
+        "detail": "低重叠=0.345<0.45, 强化趋势方向"
+      }
+    ],
+    "score": 0,
+    "threshold_bull": 3,
+    "threshold_bear": -3,
+    "reason": "五信号投票（阈值±3）：EMA斜率:-1(d=-0.2152<-thr=-0.0074)；收盘重心(加权):+1(diff=0.1072>thr=0.0148)；波段结构:0(枢轴不足,highs=0,lows=1)；趋势棒占比:+1(多4/空2≥1.5×)；K线重叠:-1(均值重叠0.345<0.45,低重叠强化空头方向)。中窗口重心(加权):-1(diff=-0.1854<-thr=-0.0148,W=20)（与短窗口一致）。综合score=0（≥+3→多头，≤-3→空头，否则中性）→neutral。"
+  },
+  "always_in": {
+    "node": "2.4",
+    "label": "Always In 判定 (Brooks双窗口)",
+    "answer": "是",
+    "branch": "AIS",
+    "reason": "【近端主判K8-K1】加权收盘低于EMA占比77.8%≥65%；EMA斜率向下(d=-0.0872<-thr=0.0074)；波段结构:枢轴不足(highs=0,lows=1)；最大价格区间1.96×ATR(>1.5×阈值,回撤较深✗)。判定为Always In Short（AIS）（结构弱/回撤深，弱AIS）。【背景参考K20-K1】加权多侧9.5%/空侧90.5%；EMA斜率向下(d=-0.2152<-thr=0.0074)。",
+    "near_window": {
+      "bar_range": "K8-K1",
+      "same_side_threshold": "65%",
+      "close_above_ema_count": 1,
+      "close_below_ema_count": 7,
+      "weighted_above_pct": "22.2%",
+      "weighted_below_pct": "77.8%"
+    }
+  },
+  "momentum": {
+    "node": "2.5",
+    "label": "动量强度 (3信号评分)",
+    "answer": "是",
+    "level": "强动量 (趋势跟随允许)",
+    "strong_count": 2,
+    "signals": [
+      {
+        "name": "M1 趋势棒优势",
+        "strong": false,
+        "detail": "多头趋势棒=4, 空头趋势棒=2, 趋势棒占比=75%"
+      },
+      {
+        "name": "M2 K线重叠率",
+        "strong": true,
+        "detail": "近8根重叠均值=0.345"
+      },
+      {
+        "name": "M3 回撤深度",
+        "strong": true,
+        "detail": "最大回撤=1.96×ATR, 阈值≤3.0×ATR"
+      }
+    ],
+    "reason": "近端强度信号2/3（主判K8-K1）：近8根趋势棒（多4/空2，总趋势棒占比6/8=75%，方向=neutral，中性方向无占优✗）；近8根重叠均值0.35(<0.5阈值,重叠低✓)；近8根最大回撤1.96×ATR(≤3.0×阈值,回撤浅✓)。惯性强，支持趋势跟踪。 背景参考K20-K1（趋势棒多7/空8，重叠0.38）。"
+  },
+  "signal_bar": {
+    "node": "9",
+    "label": "Signal Bar Analysis (K1)",
+    "bar_type": "trend_bull",
+    "body_ratio": 1.0,
+    "close_position": 1.0,
+    "range_atr_ratio": 0.54,
+    "is_overlong": false,
+    "open": 14.18,
+    "high": 14.26,
+    "low": 14.18,
+    "close": 14.26
+  },
+  "order_routing": {
+    "cycle_position": "unknown",
+    "default_order_type": "no order",
+    "cycle_order_map": {
+      "spike": "市价单",
+      "micro_channel": "突破单",
+      "tight_channel": "突破单",
+      "normal_channel": "突破单",
+      "broad_channel": "限价单",
+      "trading_range": "限价单",
+      "trending_tr": "突破单",
+      "extreme_tr": "不下单",
+      "unknown": "不下单"
+    }
+  },
+  "decision_summary": "[Direction] NEUTRAL (wait)  (vote score: 0, >=+3 long, <=-3 short)\n[Inertia] Always In: AIS  (near window K8-K1)\n[Momentum] 强动量 (趋势跟随允许)\n[K1] type=trend_bull, normal, quality=VALID\n\n[Synthesis] Conditions NOT met -> wait or no order\n  Reasons: direction vote score 0 not at +/-3 threshold"
+}

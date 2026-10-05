@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛博评审厅 · Multi-Expert AI Review Hall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/cyberpunk.css">
+</head>
+<body>
+<div class="bg"><div class="bg-glow"></div><div class="bg-grid"></div></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-icon">◤◢</div>
+    <div class="brand-txt">
+      <h1>赛博评审厅</h1>
+      <span class="brand-sub">REVIEW HALL · MULTI-EXPERT PANEL</span>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="search-box">
+      <input id="codeInput" type="text" value="600519" maxlength="6" spellcheck="false" autocomplete="off">
+      <button id="btnGo" class="btn-go">REVIEW</button>
+    </div>
+    <div class="mode-switch" id="modeSwitch">
+      <button class="mode-btn active" data-mode="fast">快 速 档</button>
+      <button class="mode-btn" data-mode="deep">深度回放</button>
+    </div>
+  </div>
+</header>
+
+<div id="statusline" class="statusline"><span class="dot"></span><span id="statusText">系统待命 · 输入代码开始评审</span></div>
+
+<!-- v3.1 个股快速切换带 -->
+<div id="stockStrip" class="stock-strip"></div>
+
+<!-- v3.1 评审流水线 -->
+<div id="pipeline" class="pipeline" aria-label="评审流水线"></div>
+
+<main class="layout">
+  <section class="panel wall-panel">
+    <div class="panel-head">
+      <h2><span class="h2-bar"></span>评审团投票墙 <em id="stockName" class="stock-name"></em></h2>
+      <div class="wall-right">
+        <span id="verdictBadge" class="verdict"></span>
+        <div class="legend"><span class="lg lg-rule">规则引擎</span><span class="lg lg-agent">深度Agent</span><span class="lg lg-dispute">分歧</span></div>
+      </div>
+    </div>
+    <div id="judgeGrid" class="judge-grid"></div>
+  </section>
+
+  <aside class="side">
+    <section class="panel radar-panel">
+      <div class="panel-head"><h2><span class="h2-bar"></span>流派分歧雷达</h2></div>
+      <div id="radarChart" class="radar-chart"></div>
+      <div id="radarLegend" class="radar-legend"></div>
+    </section>
+    <section class="panel score-panel">
+      <div class="panel-head"><h2><span class="h2-bar"></span>汇总判定</h2></div>
+      <div id="scoreBoard" class="score-board"></div>
+    </section>
+  </aside>
+</main>
+
+<section class="panel dispute-panel">
+  <div class="panel-head"><h2><span class="h2-bar gold"></span>分歧检测 <em class="hint">｜规则 − Agent｜&gt; 30 自动标记</em></h2></div>
+  <div id="disputeList" class="dispute-list"></div>
+</section>
+
+<!-- v3.2 流派势力 -->
+<section class="panel school-panel">
+  <div class="panel-head"><h2><span class="h2-bar violet"></span>八大流派势力 <em class="hint">评委聚合 · 倾向按流派均分判定</em></h2></div>
+  <div id="schoolPower" class="school-power"></div>
+</section>
+
+<section class="panel debate-panel">
+  <div class="panel-head">
+    <h2><span class="h2-bar pink"></span>多空辩论区 <em class="hint">3 轮结构化辩论 · 最高分 vs 最低分</em></h2>
+    <div class="debate-controls">
+      <button id="btnDebate" class="btn-neon">开始辩论</button>
+      <button id="btnSkip" class="btn-ghost">跳过</button>
+    </div>
+  </div>
+  <div id="debateLog" class="debate-log"></div>
+</section>
+
+<section class="panel report-panel">
+  <div class="panel-head"><h2><span class="h2-bar"></span>评审报告</h2><button id="btnExport" class="btn-neon btn-sm">导出报告 ↓</button></div>
+  <div id="reportBody" class="report-body"></div>
+</section>
+
+<!-- v3.1 三股横向对比 -->
+<section class="panel compare-panel">
+  <div class="panel-head"><h2><span class="h2-bar cyan"></span>三股横向对比 <em class="hint">点击任一列切入该股详情</em></h2></div>
+  <div id="compareGrid" class="compare-grid"></div>
+</section>
+
+<!-- v3.2 评审历史 -->
+<section class="panel history-panel">
+  <div class="panel-head"><h2><span class="h2-bar gold"></span>评审历史 <em class="hint">每次评审自动留痕 · 点击回看</em></h2><button id="btnClearHistory" class="btn-ghost btn-sm">清空</button></div>
+  <div id="historyList" class="history-list"></div>
+</section>
+
+<footer class="foot">演示数据 · 非实时行情 · 不构成投资建议 ｜ 核心开发：华为云码道 CodeArts（Spec-Driven + Agent Team）</footer>
+
+<script src="data/demo-data.js"></script>
+<script src="js/radar.js"></script>
+<script src="js/debate.js"></script>
+<script src="js/judge-grid.js"></script>
+<script src="js/app.js"></script>
+<script src="js/extras.js"></script>
+</body>
+</html>
